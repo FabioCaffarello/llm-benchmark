@@ -1,6 +1,0 @@
-version: '3'
-
-networks:
-  llm-benchmark-network:
-    name: llm-benchmark-network
-    driver: bridge
