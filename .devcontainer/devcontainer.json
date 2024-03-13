@@ -1,0 +1,140 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker-compose
+{
+	"name": "Docker from Docker Compose",  
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+	"service": "vscode",
+	"runServices": [
+		"vscode"
+	],
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+	// Use this environment variable if you need to bind mount your local source code into a new container.
+	"remoteEnv": {
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+	},
+
+	"shutdownAction": "stopCompose",
+	// "postCreateCommand": "docker network create llm-benchmark-network &> /dev/null",
+
+	"features": {
+		"docker-from-docker": {
+			"version": "latest",
+			"moby": true
+		},
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"version": "latest",
+			"enableNonRootDocker": "true",
+			"moby": "false"
+		},
+		"ghcr.io/devcontainers/features/common-utils:2": {},
+		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {},
+		"ghcr.io/schlich/devcontainer-features/powerlevel10k:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+		"ghcr.io/devcontainers/features/nvidia-cuda:1": {
+			"installCudnn": true
+		},
+		"ghcr.io/devcontainers/features/rust:1": {},
+		"ghcr.io/eitsupi/devcontainer-features/mdbook:0": {},
+		"ghcr.io/guiyomh/features/vim:0": {}
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.defaultInterpreterPath": "/root/workspace/.venv/bin/python",
+				"files.eol": "\n",
+					"remote.extensionKind": {
+						"ms-azuretools.vscode-docker": "workspace"
+					},
+					"go.useLanguageServer": true,
+					"[go]": {
+						"editor.codeActionsOnSave": {
+							"source.organizeImports": true
+						}
+					},
+					"[go.mod]": {
+						"editor.codeActionsOnSave": {
+							"source.organizeImports": true
+						}
+					},
+					"gopls": {
+						"build.buildFlags": [
+							"-tags",
+							""
+						],
+						"usePlaceholders": false,
+						"staticcheck": true
+					},
+					"go.lintTool": "golangci-lint",
+					"go.lintOnSave": "package",
+					"editor.formatOnSave": true,
+					"go.toolsEnvVars": {
+						"GO111MODULE": "on",
+						"CGO_ENABLED": "1",
+						"GOOS": "linux",
+						"GOARCH": "amd64"
+					},
+					"go.testEnvVars": {
+						"": ""
+					},
+					"go.testFlags": [
+						"-v",
+						"-race"
+					],
+					"go.testTimeout": "10s",
+					"go.coverOnSingleTest": true,
+					"go.coverOnSingleTestFile": true,
+					"go.coverOnTestPackage": true,
+					"todo-tree.customHighlight": {
+						"TODO": {
+							"icon": "check",
+							"type": "line",
+							"iconColour": "yellow",
+							"foreground": "red",
+							"background": "yellow"
+						},
+						"FIXME": {
+							"icon": "beaker",
+							"iconColour": "red",
+							"foreground": "white",
+							"background": "red"
+						}
+					}
+			},
+			"extensions": [
+				"editorconfig.editorconfig",
+				"ms-python.vscode-pylance",
+				"ms-python.python",
+				"ms-vscode-remote.remote-containers",
+				"nrwl.angular-console",
+				"esbenp.prettier-vscode",
+				"golang.go",
+				"eamodio.gitlens",
+				"davidanson.vscode-markdownlint",
+				"ms-azuretools.vscode-docker",
+				"shardulm94.trailing-spaces",
+				"Gruntfuggly.todo-tree",
+				"bierner.emojisense",
+				"stkb.rewrap",
+				"vscode-icons-team.vscode-icons",
+				"github.vscode-pull-request-github",
+				"redhat.vscode-yaml",
+				"bajdzis.vscode-database",
+				"IBM.output-colorizer",
+				"amazonwebservices.aws-toolkit-vscode",
+				"GitHub.copilot-labs",
+				"GitHub.copilot-nightly",
+				"technosophos.vscode-make",
+				"ms-vscode.makefile-tools"
+			]
+		}
+	}
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}

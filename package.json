@@ -4,10 +4,12 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {},
   "devDependencies": {
+    "@monodon/rust": "^1.4.0",
     "@nx/js": "18.0.8",
+    "@nx/plugin": "^18.0.8",
     "@nx/workspace": "18.0.8",
+    "@nxlv/python": "^18.0.0",
     "nx": "18.0.8"
   }
 }
